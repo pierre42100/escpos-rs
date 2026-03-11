@@ -31,6 +31,8 @@
 //! }
 //! ```
 
+#[cfg(not(feature = "std"))]
+use alloc::{format, vec, vec::Vec};
 use crate::domain::ui::UIComponent;
 use crate::domain::{Command, Font, JustifyMode, PageCode, TextSize, chars_number};
 use crate::errors::Result;

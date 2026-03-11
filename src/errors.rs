@@ -7,7 +7,7 @@ use core::{cell::BorrowMutError, fmt, num::TryFromIntError};
 #[cfg(feature = "graphics")]
 use image::ImageError;
 #[cfg(feature = "ui")]
-use std::string::FromUtf8Error;
+use alloc::string::FromUtf8Error;
 #[cfg(feature = "std")]
 use std::sync::PoisonError;
 #[cfg(feature = "std")]

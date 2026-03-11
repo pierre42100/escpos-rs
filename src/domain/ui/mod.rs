@@ -1,5 +1,7 @@
 //! UI components like lines, tables, etc.
 
+#[cfg(not(feature = "std"))]
+use alloc::vec::Vec;
 use crate::domain::Command;
 use crate::errors::Result;
 use crate::printer::PrinterStyleState;
