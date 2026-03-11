@@ -5,6 +5,8 @@ use super::errors::Result;
 use crate::domain::ui::line::Line;
 use crate::printer_options::PrinterOptions;
 use crate::{domain::*, driver::Driver, utils::Protocol};
+use alloc::vec::Vec;
+use alloc::{format, vec};
 use log::debug;
 
 /// Printer

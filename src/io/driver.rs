@@ -1,6 +1,11 @@
 //! Drivers used to send data to the printer (Network or USB)
 
-use crate::errors::{PrinterError, Result};
+#[cfg(feature = "std")]
+use crate::errors::PrinterError;
+use crate::errors::Result;
+#[cfg(feature = "std")]
+use alloc::borrow::ToOwned;
+use alloc::string::String;
 #[cfg(feature = "hidapi")]
 use hidapi::{HidApi, HidDevice};
 #[cfg(feature = "native_usb")]
@@ -9,7 +14,9 @@ use nusb::{MaybeFuture, transfer::EndpointType};
 use rusb::{Context, DeviceHandle, Direction, TransferType, UsbContext, UsbOption};
 #[cfg(feature = "serial_port")]
 use serialport::SerialPort;
+#[cfg(feature = "std")]
 use std::sync::{Arc, Mutex};
+#[cfg(feature = "std")]
 use std::{
     fs::File,
     io::{self, Read, Write},
@@ -41,11 +48,13 @@ pub trait Driver {
 // ================ Console driver ================
 
 /// Console driver for debug
+#[cfg(feature = "std")]
 #[derive(Default, Clone)]
 pub struct ConsoleDriver {
     show_output: bool,
 }
 
+#[cfg(feature = "std")]
 impl ConsoleDriver {
     /// Open the Console driver
     ///
@@ -64,6 +73,7 @@ impl ConsoleDriver {
     }
 }
 
+#[cfg(feature = "std")]
 impl Driver for ConsoleDriver {
     fn name(&self) -> String {
         "console".to_owned()
@@ -88,6 +98,7 @@ impl Driver for ConsoleDriver {
 // ================ Network driver ================
 
 /// Driver for network printer
+#[cfg(feature = "std")]
 #[derive(Clone)]
 pub struct NetworkDriver {
     host: String,
@@ -96,6 +107,7 @@ pub struct NetworkDriver {
     timeout: Duration,
 }
 
+#[cfg(feature = "std")]
 impl NetworkDriver {
     /// Open the network driver
     ///
@@ -132,6 +144,7 @@ impl NetworkDriver {
     }
 }
 
+#[cfg(feature = "std")]
 impl Driver for NetworkDriver {
     fn name(&self) -> String {
         format!("network ({}:{})", self.host, self.port)
@@ -159,12 +172,14 @@ impl Driver for NetworkDriver {
 // ================ File driver ================
 
 /// Driver for USB printer using file
+#[cfg(feature = "std")]
 #[derive(Clone)]
 pub struct FileDriver {
     path: String,
     file: Arc<Mutex<File>>,
 }
 
+#[cfg(feature = "std")]
 impl FileDriver {
     /// Open the file driver
     ///
@@ -189,6 +204,7 @@ impl FileDriver {
     }
 }
 
+#[cfg(feature = "std")]
 impl Driver for FileDriver {
     fn name(&self) -> String {
         format!("file ({})", self.path)

@@ -23,8 +23,11 @@ serial_port = ["dep:serialport"]
 usb = ["dep:rusb"]
 native_usb = ["dep:nusb"]
 ui = []
-default = ["barcodes", "codes_2d"]
+default = ["barcodes", "codes_2d", "std"]
+std = []
 full = [
+    "encoding_rs/default",
+    "std",
     "barcodes",
     "codes_2d",
     "graphics",
@@ -36,8 +39,10 @@ full = [
 ]
 
 [dependencies]
-encoding_rs = "0.8.35"
+encoding_rs = { version = "0.8.35" }
 log = "0.4.28"
+spin = "0.10.0"
+hashbrown = "0.16"
 
 hidapi = { version = "2.6.3", optional = true }
 image = { version = "0.25.8", optional = true }
