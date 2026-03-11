@@ -69,6 +69,11 @@ impl<D: Driver> Printer<D> {
         }
     }
 
+    /// Release the driver used by this printer
+    pub fn driver(self) -> D {
+        self.driver
+    }
+
     /// Get the printer protocol
     pub fn protocol(&self) -> &Protocol {
         &self.protocol
