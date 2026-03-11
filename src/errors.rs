@@ -1,13 +1,13 @@
 //! Custom error
 
+#[cfg(feature = "ui")]
+use alloc::string::FromUtf8Error;
 #[cfg(not(feature = "std"))]
 use alloc::{borrow::Cow, string::String, string::ToString};
 #[cfg(not(feature = "std"))]
 use core::{cell::BorrowMutError, fmt, num::TryFromIntError};
 #[cfg(feature = "graphics")]
 use image::ImageError;
-#[cfg(feature = "ui")]
-use alloc::string::FromUtf8Error;
 #[cfg(feature = "std")]
 use std::sync::PoisonError;
 #[cfg(feature = "std")]

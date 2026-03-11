@@ -31,14 +31,14 @@
 //! }
 //! ```
 
-#[cfg(not(feature = "std"))]
-use alloc::{format, vec, vec::Vec};
 use crate::domain::ui::UIComponent;
 use crate::domain::{Command, Font, JustifyMode, PageCode, TextSize, chars_number};
 use crate::errors::Result;
 use crate::printer::PrinterStyleState;
 use crate::printer_options::PrinterOptions;
 use crate::utils::Protocol;
+#[cfg(not(feature = "std"))]
+use alloc::{format, vec, vec::Vec};
 
 /// Line style
 #[derive(Debug, Clone, Default, PartialEq)]
