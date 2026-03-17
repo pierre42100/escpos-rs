@@ -161,7 +161,7 @@ impl<D: Driver> Printer<D> {
     }
 
     /// Add command to instructions, write data and display debug information
-    fn command(&mut self, label: &str, cmd: &[Command]) -> Result<&mut Self> {
+    pub fn command(&mut self, label: &str, cmd: &[Command]) -> Result<&mut Self> {
         let instruction = Instruction::new(label, cmd, self.options.get_debug_mode());
 
         if !label.is_empty() && self.options.get_debug_mode().is_some() {
